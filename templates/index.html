@@ -1,0 +1,72 @@
+{% extends 'base.html' %}
+
+{% block title %} Početna Rent-a-car {% endblock %}
+{% block head %}
+{{ super() }}
+<link rel="stylesheet" href="{{ url_for('static', filename='/css/index.css') }}">
+
+{% endblock %}
+
+
+
+
+{% block content %}
+
+<div class="container">
+  <br>
+  {% for message in get_flashed_messages() %}
+  <div class="alert alert-warning">
+      <button type="button" class="close" data-dismiss="alert">&times;</button>
+
+      {{ message }} 
+  </div>
+  {% endfor %}
+
+  
+</div>
+
+<div class="container">
+  <img class="img1" src="/static/img/rentacar_logo_400.jpg" >
+   <h2 class="text-icon">Iznajmljivanje vozila po pristupačnim cijenama<br><br>✓Besplatno otkazivanje za većinu rezervacija<br> ✓Korisnička podrška<br> ✓Od 18 do 60 godina<br> ✓Preuzimanje na dogovorenoj lokaciji<br> ✓Redovno održavanje vozila</h2>
+   <br><br>
+   <div class="part1">
+      <div class="column">
+      <img class="calendar" src="{{ url_for('static', filename='/img/calendar.png') }}">
+      <heading><b>Fleksibilno iznajmljivanje</b></heading>
+      <p><i>Besplatno otkažite iznajmljivanje 48 sati prije preuzimanja</i></p>
+      </div>
+      <div class="column">
+        <img class="search" src="{{ url_for('static', filename='/img/search.png') }}">
+        <heading><b>Bez skrivenih kamata</b></heading>
+        <p><i>Znate šta plaćate</i></p>
+      </div>
+      <div class="column">
+        <img class="wallet" src="{{ url_for('static', filename='/img/wallet.png') }}">
+        <heading><b>Najbolja cijena zagarantovana</b></heading>
+        <p><i>Ako ste našli negdje jeftinije auto, mi ćemo dati po istoj cijeni</i></p>
+      </div>   
+  </div>
+      <br>
+  <div class="part2">
+    <div class="column1">
+    <img class="wash" src="{{ url_for('static', filename='/img/washing.png') }}" >
+    <heading><b>Čista i uredna auta</b></heading>
+    <p><i>Nakon vraćanja svako auto ide na dubinsko pranje i čišćenje.</i></p>
+    </div>
+    <div class="column1">
+      <img class="email" src="{{ url_for('static', filename='/img/email.png') }}">
+      <heading><b>{% if session.get('username') != None %}{{ session.get('username') }} , Želite li prvi da čujete novosti
+                  {%  else %} Želite li prvi da čujete od nas
+                  {% endif %}
+      </b></heading>
+      <br><input placeholder="example@gmail.com"><button type="submit">Potvrdi</submit>
+    </div>
+  </div>
+  
+  
+  
+</div>
+
+
+
+{% endblock %}

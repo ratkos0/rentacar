@@ -1,0 +1,66 @@
+{% extends 'base.html' %}
+{% import "bootstrap/wtf.html" as wtf %}
+
+
+{% block title %} Katalog {% endblock %}
+
+
+
+{% block content %}
+
+
+
+    <div class="container">
+        <div class="page-header">
+            <h1 align="center">Catalog</h1>
+        </div>
+        
+        {% for i in listing %}
+        <table id='Table' style="width: 100%;
+                                overflow: auto;
+                                border: 1px solid;">
+            <tr>
+                <th id="0">Naziv kompanije</th>
+                <th id="1">Broj šasije</th>
+                <th id="2">Marka</th>
+                <th id="3">Model</th>
+                <th id="4">Godina proizvodnje</th>
+                <th id="5">Motor</th>
+                <th id="6">Kilovati</th>
+                <th id="7">Konjske snage</th>
+                <th id="8">Dnevna cijena</th>
+                <form action="rezervacija">
+                <th><button type="submit" method="post" style="border: none;
+                                                border-bottom: 1px solid;
+                                                background-color: white;"><a href="{{ url_for('rezervacija') }}"></a>Rezervacija</button></th>
+                </form>
+            </tr>
+            <tr>
+                <td>{{ i[0] }}</td>
+                <td>{{ i[1] }}</td>
+                <td>{{ i[2] }}</td>
+                <td>{{ i[3] }}</td>
+                <td>{{ i[4] }}</td>
+                <td>{{ i[5] }}</td>
+                <td>{{ i[6] }}</td>
+                <td>{{ i[7] }} hp</td>
+                <td>{{ i[8] }}(KM)</td>
+            </tr>
+        </table>
+
+        {% endfor %}
+
+
+        {% for message in get_flashed_messages() %}
+        <div class="alert alert-warning">
+            <button type="button" class="close" data-dismiss="alert">&times;</button>
+      
+            {{ message }} 
+        </div>
+        {% endfor %}
+
+  
+    </div>
+
+
+{% endblock %}

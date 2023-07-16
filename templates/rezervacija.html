@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% import "bootstrap/wtf.html" as wtf %}
+
+
+{% block title %} Katalog {% endblock %}
+
+
+
+{% block content %}
+
+
+
+    <div class="container">
+        
+        
+        <h4>First name: {{ session['FirstName'] }}<br>
+            Last Name: {{ session['LastName'] }}<br>
+            Email: {{ session['Email'] }}<br>
+            </h4>
+
+        {{ wtf.quick_form(form) }}
+
+        {% for message in get_flashed_messages() %}
+        <div class="alert alert-warning">
+            <button type="button" class="close" data-dismiss="alert">&times;</button>
+      
+            {{ message }} 
+        </div>
+        {% endfor %}
+
+  
+    </div>
+
+
+{% endblock %}

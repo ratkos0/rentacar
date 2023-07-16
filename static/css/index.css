@@ -1,0 +1,73 @@
+
+.img1{
+width:100%; 
+  height: 100%; 
+  border-radius: 3%;
+  filter: blur(5px);
+}
+.text-icon{
+    position: absolute;
+    top: 30%;
+    left: 50%;
+    font-size: large;
+    transform: translate(-50%, -50%);
+    font-family: 'Kanit', sans-serif;
+    color: white;
+}
+
+.img1:hover{
+    opacity: 1;
+    filter: blur(18px);
+    border: solid 10px black;
+}
+.calendar, .search, .wallet{
+    height: 60px;
+    width: 60px;
+}
+.wash, .email{
+    height: 100px;
+    width: 100px;
+}
+.part1, .part2{
+    display: flex;
+    float: left;
+    padding: 5px;
+    width: 100%;
+}
+.column{
+    width: 55%;
+}
+.column p{
+    padding-left: 19%;
+    margin-bottom: 5px;
+}
+
+.column1{
+    border-top: 1px solid;
+    border-bottom: 1px solid;
+    border-radius: 10px;
+    width: 50%;
+}
+.column1 p{
+    padding-left: 19%;
+    margin-bottom: 5px;
+}
+input, button{
+    border: none;
+}
+.column1 input, button{
+    border-bottom: 1px solid;
+    border-radius: 2px;
+}
+.column1 button{
+    float: right;
+    background-color: white;
+}
+input{
+    margin-left: 50%;
+}
+button:hover{
+    background-color: red;
+    opacity: 1;
+    cursor: help;
+}
