@@ -16,7 +16,7 @@
         </div>
         
         {% for i in listing %}
-        <table id='Table' style="width: 100%;
+        <!--<table id='Table' style="width: 100%;
                                 overflow: auto;
                                 border: 1px solid;">
             <tr>
@@ -29,6 +29,7 @@
                 <th id="6">Kilovati</th>
                 <th id="7">Konjske snage</th>
                 <th id="8">Dnevna cijena</th>
+                
                 <form action="rezervacija">
                 <th><button type="submit" method="post" style="border: none;
                                                 border-bottom: 1px solid;
@@ -47,6 +48,36 @@
                 <td>{{ i[8] }}(KM)</td>
             </tr>
         </table>
+        -->
+          <!--  TEST -->
+        <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">Naziv Kompanije</th>
+                <th scope="col">Broj sasije</th>
+                <th scope="col">Marka</th>
+                <th scope="col">Godiste</th>
+                <th scope="col">Motor</th>
+                <th scope="col">Kilovati</th>
+                <th scope="col">Konjske snage</th>
+                <th scope="col">Dnevna cijena</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>{{ i[0] }}</td>
+                <td>{{ i[1] }}</td>
+                <td>{{ i[2] }}</td>
+                <td>{{ i[3] }}</td>
+                <td>{{ i[4] }}</td>
+                <td>{{ i[5] }}</td>
+                <td>{{ i[6] }}</td>
+                <td>{{ i[7] }} hp</td>
+                <td>{{ i[8] }}(KM)</td>
+              </tr>
+            </tbody>
+          </table>
 
         {% endfor %}
 
