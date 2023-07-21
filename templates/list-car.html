@@ -53,10 +53,10 @@
         <table class="table">
             <thead>
               <tr>
-                <th scope="col">#</th>
                 <th scope="col">Naziv Kompanije</th>
                 <th scope="col">Broj sasije</th>
                 <th scope="col">Marka</th>
+                <th scope="col">Model</th>
                 <th scope="col">Godiste</th>
                 <th scope="col">Motor</th>
                 <th scope="col">Kilovati</th>
@@ -81,6 +81,13 @@
 
         {% endfor %}
 
+        <div class="info-rent">
+          <h4 style="border-top: 1px solid black;
+                     font-family:'Kanit', sans-serif;
+                     margin-top: 10%;">Rentaj vozilo?</h4>
+                     <a href="{{ url_for('rezervacija') }}" class="btn btn-primary btn-lg btn-block" role="button" aria-pressed="true">Klikni me.</a>
+        </div>
+
 
         {% for message in get_flashed_messages() %}
         <div class="alert alert-warning">
@@ -90,8 +97,9 @@
         </div>
         {% endfor %}
 
+
+
   
     </div>
-
-
+    
 {% endblock %}

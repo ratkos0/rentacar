@@ -13,9 +13,9 @@
     <div class="container">
         
         
-        <h4>First name: {{ session['FirstName'] }}<br>
-            Last Name: {{ session['LastName'] }}<br>
-            Email: {{ session['Email'] }}<br>
+        <h4>First name:<i><u> {{ session['FirstName'] }}</i></u><br>
+            Last Name:<i><u> {{ session['LastName'] }} </i></u><br>
+            Email:<i><u> {{ session['Email'] }} </i></u><br>
             </h4>
 
         {{ wtf.quick_form(form) }}

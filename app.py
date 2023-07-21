@@ -236,7 +236,6 @@ def setup():
 @app.route('/rezervacija/', methods=['GET', 'POST'])
 def rezervacija():
     form = Rezer()
-    flash(session.get('Email'))
     if request.method == 'POST':
         if session['login'] == False:
             flash('Ooops no login detected, please Log In and try again', 'danger')
