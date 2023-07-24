@@ -99,6 +99,7 @@ def register():
         password = request.form.get('password')
         verify_pass = request.form.get('verify_pass')
         if password == verify_pass:
+            #Ako se šifra podudara sa bazom treži se email u bazi, ako ga nema onda uzima podatke i registruje korisnika
             if (cur.execute('SELECT * FROM Kupci WHERE email = %s', [email]) ==0):
                 if (cur.execute('SELECT * FROM Kupci WHERE username = %s', [username]) ==0):
                     cur.execute('INSERT INTO Kupci(idKupci, Ime, Prezime, Email, Broj_telefona, username, password) VALUES (%s, %s, %s, %s, %s, %s, %s)', [idKupca ,name, surname, email, Broj_telefona, username, sha256_crypt.hash(password)])
@@ -126,16 +127,18 @@ def login():
             cur = mysql.connection.cursor()
             username = request.form.get('username')
             pswrd = request.form.get('password')
-            #Lenght is set to minimum 8 characters
+            #Dužina lozinke je podešena kroz WTFFormu na minimalno 8 karaktera
             if (cur.execute('SELECT * FROM Kupci WHERE username = %s', [username])) != 0:
                 try:
                     cur.execute('SELECT password FROM Kupci where username=%s', [username])
                     password = cur.fetchone()
+                    #Verifikovanje lozinki unosa i iz baze 
                     if sha256_crypt.verify(pswrd , *password) == True:
                         session['login'] = True
                         session['username'] = request.form.get('username')
                         cur.execute('SELECT * FROM Kupci WHERE username = %s', [username])
                         data = cur.fetchone()
+                        #Ubacivanje u sesiju podataka iz baze
                         session['UserID'] = data[0]
                         session['FirstName'] = data[1]
                         session['LastName'] = data[2]
@@ -247,10 +250,14 @@ def rezervacija():
                 dani = request.form.get('days')
                 cur.execute('SELECT Naziv FROM rent_a_car')
                 name = cur.fetchone()
-                cur.execute('INSERT INTO rezervacija(Kupci_idKupci ,Auta_Rent_a_car_Naziv, Auta_Broj_sasije, Dana) VALUES(%s, %s, %s, %s)', [session['UserID'], *name ,sasija, dani])
-                mysql.connection.commit()
-                cur.close()
-                flash('Success', 'success')
+                if(cur.execute('SELECT Auta_Broj_sasije FROM rezervacija WHERE Auta_Broj_sasije = %s', [sasija])) == 0:
+                    cur.execute('INSERT INTO rezervacija(Kupci_idKupci ,Auta_Rent_a_car_Naziv, Auta_Broj_sasije, Dana) VALUES(%s, %s, %s, %s)', [session['UserID'], *name ,sasija, dani])
+                    mysql.connection.commit()
+                    cur.close()
+                    flash('Success', 'success')
+                else:
+                    flash('Ooops looks like the car has been rented', 'danger')                
             except Exception as e:
                 flash(e)
+
     return render_template('rezervacija.html', form=form)
