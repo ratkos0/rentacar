@@ -11,10 +11,10 @@ passlib==1.7.4<br />
 PyYAML==5.4.1<br />
 WTForms==3.0.1<br />
 
-#Running
+# Running
 Flask run <br/>
 Or check routes by: Flask routes
 
-#Installation
+# Installation
 pip install -r requirements.txt
 
